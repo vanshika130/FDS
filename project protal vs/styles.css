@@ -1,0 +1,99 @@
+body {
+    background-image: url("VA\ copy.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Ensure the body takes up the full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskbar {
+    display: flex;
+    align-items: center; /* Center logo vertically */
+    justify-content: flex-start; /* Align items to the left */
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for the taskbar */
+    color: white;
+    width: 100%; /* Ensure taskbar spans the full width */
+    position: absolute;
+    top: 0;
+}
+
+.logo {
+    height: 80px; /* Adjust height as needed */
+    margin-right: 20px; /* Space between logo and nav links */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px; /* Space between the menu items */
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#logout-button {
+    margin-left: auto; /* Keep the logout button to the right */
+}
+
+.main-heading-container {
+    text-align: center;
+}
+
+.main-heading {
+    color: blue;
+    font-size: 100px;
+    margin: 0; /* Remove any default margin */
+    padding: 10px;
+    /* Highlight background with blue color */
+    display: inline-block; /* Ensures the blue background fits the text */
+    border-radius: 5px; /* Rounded corners for the highlighted background */
+}
+
+.sub-heading {
+    font-size: 50px;
+    color: black;
+    margin: 10px 0;
+}
+
+.button-container {
+    margin: 20px 0;
+}
+
+.btn {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 30px;
+    color: white;
+    background-color: blue;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: darkblue;
+}
+
+.dashboard {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

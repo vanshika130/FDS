@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA C++ Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .quiz-container {
+            width: 60%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .question-number {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #prevBtn {
+            background-color: #ccc;
+        }
+        #nextBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #submitBtn {
+            background-color: #2196F3;
+            color: white;
+        }
+        .timer {
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="timer">Time left: <span id="timer">30:00</span></div>
+    <div id="question-section">
+        <div class="question-number"></div>
+        <div class="question-text"></div>
+        <ul class="options"></ul>
+    </div>
+    <button id="prevBtn" class="hidden">Previous</button>
+    <button id="nextBtn">Next</button>
+    <button id="submitBtn" class="hidden">Submit</button>
+</div>
+
+<script>
+    const questions = [
+        { number: 1, text: "What is the time complexity of quicksort in the worst case?", options: ["A) O(n)", "B) O(n log n)", "C) O(n^2)", "D) O(log n)"], answer: "C) O(n^2)" },
+        { number: 2, text: "Which data structure is used to implement breadth-first search?", options: ["A) Stack", "B) Queue", "C) Linked List", "D) Array"], answer: "B) Queue" },
+        { number: 3, text: "In dynamic programming, the problem of overlapping subproblems occurs in:", options: ["A) Divide and Conquer", "B) Greedy algorithms", "C) Backtracking", "D) Dynamic programming"], answer: "D) Dynamic programming" },
+        { number: 4, text: "What is the time complexity of binary search?", options: ["A) O(n)", "B) O(n^2)", "C) O(log n)", "D) O(1)"], answer: "C) O(log n)" },
+        { number: 5, text: "Which of the following is a self-balancing binary search tree?", options: ["A) Binary Search Tree", "B) AVL Tree", "C) B Tree", "D) Splay Tree"], answer: "B) AVL Tree" },
+        { number: 6, text: "In a min-heap, the minimum element is located at:", options: ["A) Root", "B) Any leaf", "C) Leftmost leaf", "D) Rightmost leaf"], answer: "A) Root" },
+        { number: 7, text: "Which algorithm finds the shortest path in a weighted graph?", options: ["A) Dijkstra's algorithm", "B) BFS", "C) DFS", "D) Kruskal's algorithm"], answer: "A) Dijkstra's algorithm" },
+        { number: 8, text: "What is the output of this code? int a = 10; int b = a++; cout << b;", options: ["A) 10", "B) 11", "C) 0", "D) Undefined"], answer: "A) 10" },
+        { number: 9, text: "Which sorting algorithm is stable?", options: ["A) Quick Sort", "B) Merge Sort", "C) Heap Sort", "D) Selection Sort"], answer: "B) Merge Sort" },
+        { number: 10, text: "What is the space complexity of the Fibonacci sequence solution using dynamic programming?", options: ["A) O(n)", "B) O(log n)", "C) O(1)", "D) O(n^2)"], answer: "A) O(n)" },
+        { number: 11, text: "Which graph traversal algorithm uses a stack?", options: ["A) BFS", "B) DFS", "C) Dijkstra's algorithm", "D) Prim's algorithm"], answer: "B) DFS" },
+        { number: 12, text: "Which C++ feature allows different functions to have the same name?", options: ["A) Polymorphism", "B) Overloading", "C) Encapsulation", "D) Inheritance"], answer: "B) Overloading" },
+        { number: 13, text: "What is the result of this C++ code? int arr[] = {1, 2, 3, 4}; cout << arr[3];", options: ["A) 1", "B) 2", "C) 3", "D) 4"], answer: "D) 4" },
+        { number: 14, text: "In which data structure is insertion done at the front and deletion at the rear?", options: ["A) Stack", "B) Queue", "C) Deque", "D) Priority Queue"], answer: "B) Queue" },
+        { number: 15, text: "What is the time complexity of inserting an element in a heap?", options: ["A) O(n)", "B) O(log n)", "C) O(n^2)", "D) O(1)"], answer: "B) O(log n)" },
+        { number: 16, text: "Which data structure allows the removal of the highest priority element first?", options: ["A) Stack", "B) Queue", "C) Priority Queue", "D) Array"], answer: "C) Priority Queue" },
+        { number: 17, text: "What is the time complexity of searching for an element in a hash table?", options: ["A) O(1)", "B) O(n)", "C) O(log n)", "D) O(n log n)"], answer: "A) O(1)" },
+        { number: 18, text: "Which algorithm solves the all-pairs shortest path problem?", options: ["A) Dijkstra's algorithm", "B) Floyd-Warshall algorithm", "C) Kruskal's algorithm", "D) Prim's algorithm"], answer: "B) Floyd-Warshall algorithm" },
+        { number: 19, text: "What is the advantage of linked lists over arrays?", options: ["A) Random access", "B) Fixed size", "C) Dynamic size", "D) Faster traversal"], answer: "C) Dynamic size" },
+        { number: 20, text: "Which C++ feature allows the creation of a new class from an existing class?", options: ["A) Polymorphism", "B) Encapsulation", "C) Inheritance", "D) Abstraction"], answer: "C) Inheritance" },
+
+        // Additional 20 questions
+        { number: 21, text: "Which of the following is a greedy algorithm?", options: ["A) Merge Sort", "B) Dijkstra's algorithm", "C) Prim's algorithm", "D) Both B and C"], answer: "D) Both B and C" },
+        { number: 22, text: "Which algorithm is used for minimum spanning tree?", options: ["A) Dijkstra's algorithm", "B) Floyd-Warshall", "C) Kruskal's algorithm", "D) Bellman-Ford algorithm"], answer: "C) Kruskal's algorithm" },
+        { number: 23, text: "What is the time complexity of heap sort?", options: ["A) O(n log n)", "B) O(n^2)", "C) O(n)", "D) O(log n)"], answer: "A) O(n log n)" },
+        { number: 24, text: "Which C++ feature supports data hiding?", options: ["A) Encapsulation", "B) Polymorphism", "C) Inheritance", "D) Abstraction"], answer: "A) Encapsulation" },
+        { number: 25, text: "What is the output of this code? int a = 5; a = a + ++a; cout << a;", options: ["A) 10", "B) 11", "C) 12", "D) Undefined"], answer: "C) 12" },
+        { number: 26, text: "Which data structure supports FIFO (First In First Out)?", options: ["A) Stack", "B) Queue", "C) Linked List", "D) Tree"], answer: "B) Queue" },
+        { number: 27, text: "What is the time complexity of inserting an element in a sorted linked list?", options: ["A) O(1)", "B) O(n)", "C) O(log n)", "D) O(n log n)"], answer: "B) O(n)" },
+        { number: 28, text: "Which algorithm is used for matrix chain multiplication?", options: ["A) Divide and Conquer", "B) Greedy", "C) Dynamic Programming", "D) Backtracking"], answer: "C) Dynamic Programming" },
+        { number: 29, text: "Which of the following is an NP-complete problem?", options: ["A) Sorting", "B) Searching", "C) Travelling Salesman Problem", "D) Binary Search"], answer: "C) Travelling Salesman Problem" },
+        { number: 30, text: "Which C++ data type does not allow decimal values?", options: ["A) float", "B) double", "C) int", "D) long double"], answer: "C) int" },
+        { number: 31, text: "What is the result of this code? int a = 10, b = 20; swap(a, b); cout << a << b;", options: ["A) 1020", "B) 2010", "C) 1010", "D) 2020"], answer: "B) 2010" },
+        { number: 32, text: "Which data structure does depth-first search use?", options: ["A) Queue", "B) Stack", "C) Linked List", "D) Graph"], answer: "B) Stack" },
+        { number: 33, text: "What is the time complexity of Bubble Sort in the best case?", options: ["A) O(n log n)", "B) O(n^2)", "C) O(n)", "D) O(log n)"], answer: "C) O(n)" },
+        { number: 34, text: "Which sorting algorithm is non-comparison based?", options: ["A) Quick Sort", "B) Merge Sort", "C) Radix Sort", "D) Heap Sort"], answer: "C) Radix Sort" },
+        { number: 35, text: "Which algorithm is used for topological sorting?", options: ["A) DFS", "B) BFS", "C) Dijkstra's algorithm", "D) Prim's algorithm"], answer: "A) DFS" },
+        { number: 36, text: "Which problem is solved using the Bellman-Ford algorithm?", options: ["A) Single-source shortest path", "B) All-pairs shortest path", "C) Minimum spanning tree", "D) Longest common subsequence"], answer: "A) Single-source shortest path" },
+        { number: 37, text: "Which of the following is not a balanced binary tree?", options: ["A) AVL Tree", "B) Red-Black Tree", "C) Binary Search Tree", "D) B Tree"], answer: "C) Binary Search Tree" },
+        { number: 38, text: "Which algorithm is used for pattern matching in strings?", options: ["A) Dijkstra's algorithm", "B) Knuth-Morris-Pratt algorithm", "C) Bellman-Ford algorithm", "D) Quick Sort"], answer: "B) Knuth-Morris-Pratt algorithm" },
+        { number: 39, text: "Which of the following supports function overriding?", options: ["A) Abstraction", "B) Encapsulation", "C) Polymorphism", "D) Inheritance"], answer: "C) Polymorphism" },
+        { number: 40, text: "What is the output of this code? int x = 1, y = 2; if(x++ && ++y) { x += y; } cout << x;", options: ["A) 3", "B) 4", "C) 5", "D) 6"], answer: "C) 5" }
+    ];
+
+    let currentQuestionIndex = 0;
+    const userAnswers = [];
+    const selectedQuestions = [];
+
+    // Shuffle function to randomize array elements
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    // Randomly select 15 questions from the 40-question pool
+    shuffle(questions);
+    selectedQuestions.push(...questions.slice(0, 15));
+
+    function loadQuestion() {
+        const question = selectedQuestions[currentQuestionIndex];
+        document.querySelector('.question-number').textContent = `Question ${currentQuestionIndex + 1}`;
+        document.querySelector('.question-text').textContent = question.text;
+        
+        const optionsList = document.querySelector('.options');
+        optionsList.innerHTML = '';
+        question.options.forEach(option => {
+            const li = document.createElement('li');
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.name = 'option';
+            input.value = option;
+            li.appendChild(input);
+            li.appendChild(document.createTextNode(option));
+            optionsList.appendChild(li);
+        });
+
+        document.getElementById('prevBtn').classList.toggle('hidden', currentQuestionIndex === 0);
+        document.getElementById('nextBtn').classList.toggle('hidden', currentQuestionIndex === selectedQuestions.length - 1);
+        document.getElementById('submitBtn').classList.toggle('hidden', currentQuestionIndex !== selectedQuestions.length - 1);
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        userAnswers[currentQuestionIndex] = document.querySelector('input[name="option"]:checked')?.value || '';
+        currentQuestionIndex++;
+        loadQuestion();
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        currentQuestionIndex--;
+        loadQuestion();
+    });
+
+    document.getElementById('submitBtn').addEventListener('click', () => {
+        userAnswers[currentQuestionIndex] = document.querySelector('input[name="option"]:checked')?.value || '';
+        let score = 0;
+        selectedQuestions.forEach((q, i) => {
+            if (q.answer === userAnswers[i]) {
+                score++;
+            }
+        });
+        alert(`Your score is: ${score} out of ${selectedQuestions.length}`);
+    });
+
+    // Load the first question
+    function loadQuestion() {
+    const question = selectedQuestions[currentQuestionIndex];
+    document.querySelector('.question-number').textContent = `Question ${currentQuestionIndex + 1}`;
+    document.querySelector('.question-text').textContent = question.text;
+    
+    const optionsList = document.querySelector('.options');
+    optionsList.innerHTML = '';
+    question.options.forEach(option => {
+        const li = document.createElement('li');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'option';
+        input.value = option;
+
+        // Check if the user has already answered this question
+        if (userAnswers[currentQuestionIndex] === option) {
+            input.checked = true;  // Pre-select the answer if it's already stored
+        }
+
+        li.appendChild(input);
+        li.appendChild(document.createTextNode(option));
+        optionsList.appendChild(li);
+    });
+    // Send the selected answer to the backend using fetch (AJAX request)
+function saveAnswer() {
+    const selectedOption = document.querySelector('input[name="option"]:checked');
+    if (selectedOption) {
+        const answerData = {
+            questionIndex: currentQuestionIndex,
+            selectedAnswer: selectedOption.value
+        };
+        
+        fetch('/save_answer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(answerData)
+        }).then(response => response.json())
+          .then(data => {
+              console.log('Answer saved successfully:', data);
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+          function submitQuiz() {
+    fetch('/submit_quiz', {
+        method: 'POST',
+    }).then(response => response.json())
+      .then(data => {
+          alert(`Your score is: ${data.score}`);
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+      });
+}
+
+    }
+}
+
+
+    document.getElementById('prevBtn').classList.toggle('hidden', currentQuestionIndex === 0);
+    document.getElementById('nextBtn').classList.toggle('hidden', currentQuestionIndex === selectedQuestions.length - 1);
+    document.getElementById('submitBtn').classList.toggle('hidden', currentQuestionIndex !== selectedQuestions.length - 1);
+}
+
+</script>
+
+</body>
+</html>

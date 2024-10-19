@@ -1,0 +1,68 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8; /* Light background */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px; /* Set a maximum width for the container */
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50; /* Dark blue color */
+    margin-bottom: 20px;
+}
+
+p {
+    text-align: center;
+    color: #34495e; /* Darker gray for better readability */
+}
+
+.language {
+    margin-bottom: 20px; /* Space between language sections */
+    border: 1px solid #3498db; /* Blue border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px;
+    transition: transform 0.2s; /* Smooth scale transition */
+}
+
+.language:hover {
+    transform: scale(1.02); /* Slightly enlarge the section on hover */
+}
+
+.language h3 {
+    color: #3498db; /* Bright blue for section headings */
+    text-align: center;
+    margin: 10px 0;
+}
+
+.language ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+}
+
+.language ul li {
+    margin: 10px 0; /* Space between list items */
+}
+
+.language ul li a {
+    display: block; /* Make the link fill the entire list item */
+    text-decoration: none; /* Remove underline */
+    background-color: #3498db; /* Blue background */
+    color: white; /* White text color */
+    padding: 10px; /* Padding for buttons */
+    border-radius: 5px; /* Rounded button corners */
+    text-align: center; /* Center the text */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.language ul li a:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}

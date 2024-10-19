@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="home.css"> 
+</head>
+<body>
+    <div class="taskbar">
+        <button class="btn" onclick="loadContent('community')">Community</button>
+        <button class="btn" onclick="loadContent('projects')">Projects</button>
+        <button class="btn" onclick="loadContent('code quest')">Code Quest</button>
+        <button class="btn" onclick="loadContent('people')">People</button>
+        <button class="btn" onclick="loadContent('contact')">Contact Us</button>
+        <button class="btn" onclick="loadContent('settings')">Settings</button>
+    </div>
+    <div class="main-content">
+        <div id="content">
+            <h2>Welcome</h2>
+            <p>Select a section from the buttons on the side.</p>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>

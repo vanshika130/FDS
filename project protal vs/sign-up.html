@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signup.css"> 
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="email">Username*</label>
+                <input type="email" id="email" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password*</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact Number*</label>
+                <input type="tel" id="contact" placeholder="Enter your contact number" required>
+            </div>
+            <div class="form-group">
+                <label for="institute">Name of Your Institute*</label>
+                <input type="text" id="institute" placeholder="Enter your school or college" required>
+            </div>
+            <div class="form-group">
+                <label for="degree">Educational Degree*</label>
+                <select id="degree" required>
+                    <option value="" disabled selected>Select your degree</option>
+                    <option value="highschool">High School</option>
+                    <option value="bachelor">Bachelor's Degree</option>
+                    <option value="master">Master's Degree</option>
+                    <option value="phd">Ph.D.</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="project">Project File (optional)</label>
+                <input type="file" id="project">
+            </div>
+            <div class="form-group">
+                <label for="certificates">Certificates (optional)</label>
+                <input type="file" id="certificates" multiple>
+            </div>
+            <div class="form-group">
+                <label for="linkedin">LinkedIn Profile URL (optional)</label>
+                <input type="url" id="linkedin" placeholder="https://www.linkedin.com/in/yourprofile">
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" placeholder="Enter your age" required>
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
+            <p class="info">All fields marked with * are required.</p>
+        </form>
+    </div>
+
+    <script src="signup.js"></script>
+</body>
+</html>
